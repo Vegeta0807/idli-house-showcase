@@ -10,4 +10,9 @@ export default defineConfig({
     minify: 'terser',
     sourcemap: true,
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
 });
