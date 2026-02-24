@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/my-base-path/', // Update base path for production
+  base: '/idli-house-showcase/',
   server: {
-    host: 'localhost', // Change host from "::" to "localhost"
+    host: 'localhost',
   },
   build: {
-    outDir: 'dist', // Specify build output directory
-    minify: 'terser', // Additional build configuration
+    outDir: 'dist',
+    minify: 'terser',
     sourcemap: true,
   },
 });
