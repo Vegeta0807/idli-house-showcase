@@ -6,6 +6,7 @@ export default defineConfig({
   server: {
     host: 'localhost',
   },
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
