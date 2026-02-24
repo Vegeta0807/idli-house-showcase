@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, CheckCircle, Gift } from "lucide-react";
+import { Send, CheckCircle, Gift, Sparkles } from "lucide-react";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -38,33 +38,38 @@ const ContactSection = () => {
   };
 
   const inputClasses =
-    "w-full bg-muted/50 border border-border rounded-xl px-4 py-3 font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all duration-200";
+    "w-full bg-card border border-border rounded-2xl px-5 py-4 font-body text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent transition-all duration-300 shadow-sm";
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-secondary/40">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-28 md:py-40 bg-muted/30 relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 md:px-8 relative">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
         >
-          <p className="text-accent font-body font-semibold text-sm uppercase tracking-[0.15em] mb-3">Get In Touch</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">Contact Us</h2>
+          <div className="w-12 h-1 bg-accent mx-auto mb-6 rounded-full" />
+          <p className="text-accent font-body font-semibold text-sm uppercase tracking-[0.2em] mb-4">Get In Touch</p>
+          <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground leading-tight">
+            Contact <span className="text-accent">Us</span>
+          </h2>
         </motion.div>
 
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-xl mx-auto">
           <AnimatePresence mode="wait">
             {!submitted ? (
               <motion.form
                 key="form"
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.5 }}
                 onSubmit={handleSubmit}
-                className="space-y-5"
+                className="bg-card rounded-[2rem] p-8 md:p-12 shadow-xl border border-border/50 space-y-5"
                 noValidate
               >
                 {(["name", "phone", "email"] as const).map((field) => (
@@ -77,7 +82,7 @@ const ContactSection = () => {
                       onChange={handleChange}
                       className={inputClasses}
                     />
-                    {errors[field] && <p className="text-destructive text-xs font-body mt-1">{errors[field]}</p>}
+                    {errors[field] && <p className="text-destructive text-xs font-body mt-2 ml-1">{errors[field]}</p>}
                   </div>
                 ))}
                 <div>
@@ -89,37 +94,51 @@ const ContactSection = () => {
                     onChange={handleChange}
                     className={inputClasses + " resize-none"}
                   />
-                  {errors.message && <p className="text-destructive text-xs font-body mt-1">{errors.message}</p>}
+                  {errors.message && <p className="text-destructive text-xs font-body mt-2 ml-1">{errors.message}</p>}
                 </div>
-                <button
+                <motion.button
                   type="submit"
-                  className="w-full bg-accent text-accent-foreground font-body font-semibold px-6 py-4 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all duration-300 shadow-lg shadow-accent/20"
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-accent text-accent-foreground font-body font-semibold px-6 py-5 rounded-2xl flex items-center justify-center gap-3 shadow-[0_8px_25px_-4px] shadow-accent/30 hover:shadow-accent/50 transition-shadow duration-300 text-base"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-5 h-5" />
                   Send Message
-                </button>
+                </motion.button>
               </motion.form>
             ) : (
               <motion.div
                 key="success"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="bg-card rounded-3xl p-10 text-center shadow-lg"
+                initial={{ opacity: 0, scale: 0.9, rotateX: 10 }}
+                animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+                transition={{ duration: 0.6, type: "spring" }}
+                className="bg-card rounded-[2rem] p-10 md:p-14 text-center shadow-xl border border-border/50"
+                style={{ perspective: "800px" }}
               >
-                <CheckCircle className="w-16 h-16 text-accent mx-auto mb-4" />
-                <h3 className="font-display text-2xl font-bold text-foreground mb-3">Thank You!</h3>
-                <p className="font-body text-muted-foreground mb-6">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                >
+                  <CheckCircle className="w-20 h-20 text-accent mx-auto mb-6" />
+                </motion.div>
+                <h3 className="font-display text-3xl font-bold text-foreground mb-4">Thank You!</h3>
+                <p className="font-body text-muted-foreground mb-8 text-lg">
                   We've received your message and will get back to you soon.
                 </p>
-                <div className="bg-accent/10 rounded-2xl p-6 inline-block">
-                  <Gift className="w-8 h-8 text-accent mx-auto mb-2" />
-                  <p className="font-body text-sm text-muted-foreground mb-2">Your exclusive discount coupon:</p>
-                  <p className="font-display text-3xl font-bold text-accent tracking-wider">IDLI10</p>
-                  <p className="font-body text-sm text-muted-foreground mt-2">
-                    Show this code to get <strong>10% discount</strong> on your first order.
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="bg-accent/5 border border-accent/20 rounded-2xl p-8"
+                >
+                  <Sparkles className="w-8 h-8 text-accent mx-auto mb-3" />
+                  <p className="font-body text-sm text-muted-foreground mb-3">Your exclusive discount coupon:</p>
+                  <p className="font-display text-4xl font-bold text-accent tracking-widest mb-3">IDLI10</p>
+                  <p className="font-body text-sm text-muted-foreground">
+                    Show this code to get <strong className="text-foreground">10% discount</strong> on your first order.
                   </p>
-                </div>
+                </motion.div>
               </motion.div>
             )}
           </AnimatePresence>
