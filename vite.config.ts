@@ -6,11 +6,6 @@ export default defineConfig({
   server: {
     host: 'localhost',
   },
-  build: {
-    outDir: 'dist',
-    minify: 'terser',
-    sourcemap: true,
-  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
