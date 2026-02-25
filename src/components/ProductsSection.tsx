@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
 import productIdli from "@/assets/product-idli.jpg";
 import productBatter from "@/assets/product-batter.jpg";
+import TextReveal from "./TextReveal";
+import SmoothReveal from "./SmoothReveal";
 import TiltCard from "./TiltCard";
 import FloatingElement from "./FloatingElement";
 
@@ -30,28 +31,27 @@ const ProductsSection = () => (
     </FloatingElement>
 
     <div className="container mx-auto px-4 md:px-8 relative">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8 }}
-        className="text-center mb-20"
-      >
-        <div className="w-12 h-1 bg-accent mx-auto mb-6 rounded-full" />
-        <p className="text-accent font-body font-semibold text-sm uppercase tracking-[0.2em] mb-4">What We Offer</p>
-        <h2 className="font-display text-4xl md:text-6xl font-bold text-foreground leading-tight">
-          Our <span className="text-accent">Products</span>
-        </h2>
-      </motion.div>
+      <div className="text-center mb-20">
+        <SmoothReveal>
+          <div className="w-12 h-1 bg-accent mx-auto mb-6 rounded-full" />
+          <p className="text-accent font-body font-semibold text-sm uppercase tracking-[0.2em] mb-4">What We Offer</p>
+        </SmoothReveal>
 
-      <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto" style={{ perspective: "1200px" }}>
+        <TextReveal
+          as="h2"
+          className="font-display text-4xl md:text-6xl font-bold text-foreground leading-tight"
+        >
+          Our Products
+        </TextReveal>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
         {products.map((product, i) => (
-          <motion.div
+          <SmoothReveal
             key={product.name}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: i * 0.15 }}
+            delay={i * 0.15}
+            direction={i === 0 ? "left" : "right"}
+            distance={80}
           >
             <TiltCard className="group h-full">
               <div className="bg-background rounded-[2rem] overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-500 shadow-sm hover:shadow-2xl h-full">
@@ -59,7 +59,7 @@ const ProductsSection = () => (
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -73,7 +73,7 @@ const ProductsSection = () => (
                 </div>
               </div>
             </TiltCard>
-          </motion.div>
+          </SmoothReveal>
         ))}
       </div>
     </div>
