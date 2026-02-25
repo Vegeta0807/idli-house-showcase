@@ -58,7 +58,7 @@ const Navbar = () => {
 
               <button
               onClick={() => handleClick(link.id)}
-              className="font-body text-sm font-medium text-muted-foreground hover:text-accent transition-colors duration-200 relative group">
+              className="font-body text-sm font-medium text-muted-foreground hover:text-accent transition-colors duration-200 relative group text-slate-100">
 
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent rounded-full transition-all duration-300 group-hover:w-full" />
