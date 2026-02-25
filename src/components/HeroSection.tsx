@@ -72,8 +72,8 @@ const HeroSection = () => {
             <br />
             Hygiene You Can Trust.
           </motion.p>
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
@@ -85,7 +85,7 @@ const HeroSection = () => {
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </motion.a>
+          </motion.button>
         </div>
       </motion.div>
 

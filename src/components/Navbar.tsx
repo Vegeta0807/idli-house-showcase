@@ -1,35 +1,44 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Quality", href: "#hygiene" },
-  { label: "Products", href: "#products" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", id: "hero" },
+  { label: "About", id: "about" },
+  { label: "Quality", id: "hygiene" },
+  { label: "Products", id: "products" },
+  { label: "Contact", id: "contact" },
 ];
+
+const scrollToSection = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+};
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const handleClick = useCallback((id: string) => {
+    scrollToSection(id);
+    setOpen(false);
+  }, []);
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <a href="#hero" className="font-display text-2xl font-bold text-foreground tracking-tight">
+        <button onClick={() => scrollToSection("hero")} className="font-display text-2xl font-bold text-foreground tracking-tight">
           IDLI <span className="text-accent">House</span>
-        </a>
+        </button>
 
         {/* Desktop */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
+            <li key={link.id}>
+              <button
+                onClick={() => handleClick(link.id)}
                 className="font-body text-sm font-medium text-muted-foreground hover:text-accent transition-colors duration-200"
               >
                 {link.label}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
@@ -55,14 +64,13 @@ const Navbar = () => {
           >
             <ul className="flex flex-col items-center gap-4 py-6">
               {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={() => setOpen(false)}
+                <li key={link.id}>
+                  <button
+                    onClick={() => handleClick(link.id)}
                     className="font-body text-base font-medium text-muted-foreground hover:text-accent transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
