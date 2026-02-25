@@ -65,14 +65,18 @@ const HeroSection = () => {
           </SmoothReveal>
 
           <TextReveal
-            as="h1"
-            delay={0.4}
-            staggerDelay={0.06}
-            className="font-display text-6xl md:text-8xl font-bold text-primary leading-[0.95] mb-8"
-          >
-            IDLI House
-          </TextReveal>
-
+  as="h1"
+  delay={0.4}
+  staggerDelay={0.06}
+  className="font-display text-6xl md:text-8xl font-bold leading-[0.95] mb-8 flex gap-4"
+>
+  <div className="text-lime-500">
+    IDLI
+  </div>
+  <div className="text-amber-500">
+    House
+  </div>
+</TextReveal>
           <SmoothReveal delay={0.8} distance={30}>
             <p className="text-primary/70 font-body text-lg md:text-xl leading-relaxed mb-12 max-w-lg">
               Softness You Can Taste.
