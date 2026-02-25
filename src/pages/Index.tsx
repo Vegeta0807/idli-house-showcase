@@ -6,18 +6,18 @@ import ProductsSection from "@/components/ProductsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-const Index = () => (
-  <>
+const Index = () =>
+<>
     <Navbar />
     <main>
       <HeroSection />
       <AboutSection />
-      <HygieneSection />
-      <ProductsSection />
-      <ContactSection />
+      <HygieneSection className="shadow-none" />
+      <ProductsSection className="bg-gray-100" />
+      <ContactSection className="bg-gray-100" />
     </main>
-    <Footer />
-  </>
-);
+    <Footer className="" />
+  </>;
+
 
 export default Index;

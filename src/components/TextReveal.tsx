@@ -30,7 +30,7 @@ const TextReveal = ({
       {words.map((word, i) =>
       <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
           <motion.span
-          className="inline-block font-sans text-lime-500"
+          className="inline-block font-sans text-amber-500"
           initial={{ y: "110%", rotateX: 40, opacity: 0 }}
           animate={
           isInView ?
