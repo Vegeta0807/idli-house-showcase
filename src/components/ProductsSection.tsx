@@ -48,10 +48,10 @@ const ProductsSection = () => (
         {products.map((product, i) => (
           <motion.div
             key={product.name}
-            initial={{ opacity: 0, y: 50, rotateY: i === 0 ? 10 : -10 }}
-            whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, delay: i * 0.2 }}
+            transition={{ duration: 0.6, delay: i * 0.15 }}
           >
             <TiltCard className="group h-full">
               <div className="bg-background rounded-[2rem] overflow-hidden border border-border/50 hover:border-accent/30 transition-all duration-500 shadow-sm hover:shadow-2xl h-full">

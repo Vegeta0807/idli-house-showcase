@@ -2,23 +2,27 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import heroImg from "@/assets/hero-idli.jpg";
 import FloatingElement from "./FloatingElement";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroSection = () => {
   const ref = useRef(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  // Disable parallax transforms on mobile
+  const bgY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "30%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section id="hero" ref={ref} className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Parallax background */}
-      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+      {/* Background - static on mobile, parallax on desktop */}
+      <motion.div className="absolute inset-0" style={{ y: bgY, willChange: isMobile ? "auto" : "transform" }}>
         <img src={heroImg} alt="Premium Idli with chutney and sambar" className="w-full h-full object-cover scale-110" />
         <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/60 to-foreground/20" />
       </motion.div>
 
-      {/* Floating decorative circles */}
+      {/* Floating decorative circles - hidden on mobile via FloatingElement */}
       <FloatingElement delay={0} duration={5} y={20} className="absolute top-[15%] right-[10%] hidden md:block">
         <div className="w-32 h-32 rounded-full border-2 border-accent/20 backdrop-blur-sm" />
       </FloatingElement>
@@ -29,7 +33,10 @@ const HeroSection = () => {
         <div className="w-10 h-10 rounded-full bg-accent/15" />
       </FloatingElement>
 
-      <motion.div className="relative container mx-auto px-4 md:px-8 py-32 md:py-0" style={{ y: textY, opacity }}>
+      <motion.div
+        className="relative container mx-auto px-4 md:px-8 py-32 md:py-0"
+        style={{ y: textY, opacity, willChange: isMobile ? "auto" : "transform" }}
+      >
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -82,20 +89,16 @@ const HeroSection = () => {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - simplified animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-1.5"
-        >
+        <div className="w-6 h-10 rounded-full border-2 border-primary/30 flex items-start justify-center p-1.5 animate-bounce">
           <div className="w-1.5 h-3 bg-primary/50 rounded-full" />
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
