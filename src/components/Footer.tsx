@@ -1,12 +1,12 @@
 import SmoothReveal from "./SmoothReveal";
 
-const Footer = () => (
-  <footer className="bg-foreground py-16 md:py-20 relative overflow-hidden">
+const Footer = () =>
+<footer className="bg-foreground py-16 md:py-20 relative overflow-hidden">
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-accent/10 rounded-full blur-3xl" />
     <div className="container mx-auto px-4 md:px-8 relative">
       <div className="text-center">
         <SmoothReveal>
-          <p className="font-display text-3xl font-bold text-primary mb-4">
+          <p className="font-display text-3xl font-bold text-primary mb-4 text-lime-500">
             IDLI <span className="text-accent">House</span>
           </p>
         </SmoothReveal>
@@ -21,7 +21,7 @@ const Footer = () => (
         </p>
       </div>
     </div>
-  </footer>
-);
+  </footer>;
+
 
 export default Footer;

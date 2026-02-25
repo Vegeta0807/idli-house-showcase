@@ -18,7 +18,7 @@ const TextReveal = ({
   className = "",
   delay = 0,
   staggerDelay = 0.04,
-  as: Tag = "h2",
+  as: Tag = "h2"
 }: TextRevealProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -27,29 +27,29 @@ const TextReveal = ({
 
   return (
     <Tag ref={ref} className={className}>
-      {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
+      {words.map((word, i) =>
+      <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
           <motion.span
-            className="inline-block"
-            initial={{ y: "110%", rotateX: 40, opacity: 0 }}
-            animate={
-              isInView
-                ? { y: "0%", rotateX: 0, opacity: 1 }
-                : { y: "110%", rotateX: 40, opacity: 0 }
-            }
-            transition={{
-              type: "spring",
-              damping: 20,
-              stiffness: 90,
-              delay: delay + i * staggerDelay,
-            }}
-          >
+          className="inline-block font-sans text-lime-500"
+          initial={{ y: "110%", rotateX: 40, opacity: 0 }}
+          animate={
+          isInView ?
+          { y: "0%", rotateX: 0, opacity: 1 } :
+          { y: "110%", rotateX: 40, opacity: 0 }
+          }
+          transition={{
+            type: "spring",
+            damping: 20,
+            stiffness: 90,
+            delay: delay + i * staggerDelay
+          }}>
+
             {word}
           </motion.span>
         </span>
-      ))}
-    </Tag>
-  );
+      )}
+    </Tag>);
+
 };
 
 export default TextReveal;
