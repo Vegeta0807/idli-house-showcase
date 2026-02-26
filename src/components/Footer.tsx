@@ -7,7 +7,7 @@ const Footer = () => (
     <div className="container mx-auto px-6 md:px-12 relative">
       <div className="text-center">
         <SmoothReveal>
-          <img src={logo} alt="IDLI House" className="h-16 w-auto mx-auto mb-6 brightness-0 invert" />
+          <img src={logo} alt="IDLI House" className="h-16 w-auto mx-auto mb-6" />
         </SmoothReveal>
         <SmoothReveal delay={0.1}>
           <p className="font-body text-sm text-primary-foreground/50 mb-6">
