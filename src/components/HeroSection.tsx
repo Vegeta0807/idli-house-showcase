@@ -32,7 +32,6 @@ const HeroSection = () => {
 
       <motion.div
         className="relative container mx-auto px-6 md:px-12 py-32 md:py-0"
-        style={{ opacity: rawOpacity }}
       >
         <div className="max-w-3xl">
           {/* Logo mark */}
