@@ -1,5 +1,6 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, ReactNode } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface MagneticButtonProps {
   children: ReactNode;
@@ -8,12 +9,9 @@ interface MagneticButtonProps {
   strength?: number;
 }
 
-/**
- * Magnetic hover button — cursor attracts the element subtly.
- * Creates that premium, interactive feel.
- */
 const MagneticButton = ({ children, className = "", onClick, strength = 0.3 }: MagneticButtonProps) => {
   const ref = useRef<HTMLButtonElement>(null);
+  const isMobile = useIsMobile();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { damping: 15, stiffness: 150 });
@@ -33,13 +31,21 @@ const MagneticButton = ({ children, className = "", onClick, strength = 0.3 }: M
     y.set(0);
   };
 
+  if (isMobile) {
+    return (
+      <motion.button onClick={onClick} whileTap={{ scale: 0.97 }} className={className}>
+        {children}
+      </motion.button>
+    );
+  }
+
   return (
     <motion.button
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      style={{ x: springX, y: springY }}
+      style={{ x: springX, y: springY, willChange: "transform" }}
       whileTap={{ scale: 0.95 }}
       className={className}
     >
@@ -49,3 +55,4 @@ const MagneticButton = ({ children, className = "", onClick, strength = 0.3 }: M
 };
 
 export default MagneticButton;
+
