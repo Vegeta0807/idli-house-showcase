@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -9,6 +10,7 @@ interface TiltCardProps {
 
 const TiltCard = ({ children, className = "", glare = true }: TiltCardProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const [transform, setTransform] = useState("perspective(800px) rotateX(0deg) rotateY(0deg)");
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
 
@@ -27,6 +29,10 @@ const TiltCard = ({ children, className = "", glare = true }: TiltCardProps) => 
     setTransform("perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
     setGlarePos({ x: 50, y: 50 });
   };
+
+  if (isMobile) {
+    return <div className={`relative overflow-hidden ${className}`}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -50,3 +56,4 @@ const TiltCard = ({ children, className = "", glare = true }: TiltCardProps) => 
 };
 
 export default TiltCard;
+
