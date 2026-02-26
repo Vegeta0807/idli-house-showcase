@@ -49,32 +49,26 @@ export const StaggerContainer = ({
 export const StaggerItem = ({ children, className = "" }: StaggerItemProps) => {
   const isMobile = useIsMobile();
 
-  const variants = isMobile
-    ? {
-        hidden: { opacity: 0, y: 16 },
-        show: {
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.3,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        },
-      }
-    : {
-        hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
-        show: {
-          opacity: 1,
-          y: 0,
-          filter: "blur(0px)",
-          transition: {
-            type: "spring",
-            damping: 22,
-            stiffness: 80,
-          },
-        },
-      };
 
+  const variants = {
+    hidden: { opacity: 0, y: isMobile ? 16 : 40, scale: 0.98 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: isMobile
+        ? {
+          duration: 0.3,
+          ease: [0.22, 1, 0.36, 1],
+        }
+        : {
+          type: "spring",
+          damping: 22,
+          stiffness: 80,
+        },
+    },
+  };
+  
   return (
     <motion.div variants={variants} className={className}>
       {children}

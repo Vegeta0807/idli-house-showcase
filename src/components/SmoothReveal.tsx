@@ -35,14 +35,19 @@ const SmoothReveal = ({
 
   const revealDistance = isMobile ? Math.min(distance, 18) : distance;
 
-  const hiddenState = isMobile
-    ? { opacity: 0, x: d.x * revealDistance, y: d.y * revealDistance }
-    : { opacity: 0, x: d.x * revealDistance, y: d.y * revealDistance, filter: "blur(8px)" };
+  const hiddenState = {
+    opacity: 0,
+    x: d.x * revealDistance,
+    y: d.y * revealDistance,
+    scale: 0.98,
+  };
 
-  const visibleState = isMobile
-    ? { opacity: 1, x: 0, y: 0 }
-    : { opacity: 1, x: 0, y: 0, filter: "blur(0px)" };
-
+  const visibleState = {
+    opacity: 1,
+    x: 0,
+    y: 0,
+    scale: 1,
+  };
   return (
     <motion.div
       ref={ref}
