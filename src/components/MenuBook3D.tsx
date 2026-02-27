@@ -60,13 +60,13 @@ const MenuBook3D = () => {
     },
   ];
 
-  const totalPages = pages.length + 1;
+  const totalPages = pages.length;
   const isOpen = currentPage >= 0;
-  const isLastPage = currentPage >= totalPages - 1;
+  const isLastPage = currentPage >= pages.length;
 
   const nextPage = useCallback(() => {
-    setCurrentPage((p) => Math.min(p + 1, totalPages - 1));
-  }, [totalPages]);
+  setCurrentPage((p) => Math.min(p + 1, pages.length));
+}, [pages.length]);
 
   const prevPage = useCallback(() => {
     setCurrentPage((p) => p - 1);
@@ -241,7 +241,7 @@ const MenuBook3D = () => {
             {currentPage === 0 ? "← Close" : "← Prev"}
           </button>
           <span className="font-body text-xs text-muted-foreground">
-            {currentPage + 1} / {totalPages}
+            {Math.min(currentPage + 1, pages.length + 1)} / {pages.length + 1}
           </span>
           {!isLastPage && (
             <button
