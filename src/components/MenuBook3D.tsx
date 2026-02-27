@@ -60,7 +60,7 @@ const MenuBook3D = () => {
     },
   ];
 
-  const totalPages = pages.length;
+  const totalPages = pages.length + 1;
   const isOpen = currentPage >= 0;
   const isLastPage = currentPage >= totalPages - 1;
 
