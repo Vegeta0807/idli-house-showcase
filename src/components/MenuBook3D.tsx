@@ -133,7 +133,10 @@ const MenuBook3D = () => {
                   willChange: "transform",
                 }}
                 initial={false}
-                animate={{ rotateY: isFlipped ? -180 : 0 }}
+                animate={{
+                  rotateY: isFlipped ? -180 : 0,
+                  z: 0, // explicit base depth
+                }}
                 transition={{
                   duration: 0.7,
                   ease: [0.645, 0.045, 0.355, 1],
@@ -176,8 +179,10 @@ const MenuBook3D = () => {
               willChange: "transform",
             }}
             initial={false}
-            animate={{ rotateY: isOpen ? -180 : 0 }}
-            transition={{
+            animate={{
+              rotateY: isOpen ? -180 : 0,
+              z: 2,
+            }} transition={{
               duration: 0.8,
               ease: [0.645, 0.045, 0.355, 1],
             }}
