@@ -273,7 +273,7 @@ function PageContent({
 }) {
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="relative h-[38%] overflow-hidden">
+      <div className="relative h-[50%] overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
         <span className="absolute top-3 right-3 bg-accent text-accent-foreground font-body text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
