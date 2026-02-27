@@ -1,241 +1,255 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import productIdli from "@/assets/product-idli.jpg";
 import productBatter from "@/assets/product-batter.jpg";
 import logo from "@/assets/logo.svg";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+/**
+ * Tri-fold 3D menu inspired by tympanus.net/Tutorials/3DRestaurantMenu
+ * Structure: Cover (flips left) | Middle (stationary) | Right (flips right)
+ * All panels stack on top of each other, unfolding outward from center.
+ */
 const MenuBook3D = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useIsMobile();
 
+  const w = isMobile ? 280 : 420;
+  const h = isMobile ? 400 : 620;
+
+  // Shared page styling — paper texture feel
+  const pageStyle: React.CSSProperties = {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backfaceVisibility: "hidden",
+  };
+
+  const goldBorderShadow =
+    "inset 0 0 0 12px hsl(var(--card)), inset 0 0 0 13px hsl(var(--accent) / 0.4), inset 0 0 0 14px hsl(var(--card)), inset 0 0 0 15px hsl(var(--accent) / 0.2)";
+
   return (
-    <div className="flex items-center justify-center" style={{ perspective: "1800px" }}>
+    <div
+      className="flex items-center justify-center py-8"
+      style={{ perspective: "1600px" }}
+    >
+      {/* Container — all panels positioned absolutely inside */}
       <div
         className="relative"
         style={{
-          width: isMobile ? "300px" : "520px",
-          height: isMobile ? "420px" : "680px",
+          width: `${w}px`,
+          height: `${h}px`,
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Back page (visible when open) — Right side: Batter */}
+        {/* ====== MIDDLE (stationary, lowest z-index) ====== */}
         <div
-          className="absolute inset-0 rounded-r-lg overflow-hidden"
+          className="absolute inset-0"
           style={{
-            backfaceVisibility: "hidden",
-            boxShadow: isOpen ? "2px 4px 30px rgba(0,0,0,0.3)" : "none",
+            zIndex: 1,
+            boxShadow: isOpen ? "0 4px 20px rgba(0,0,0,0.4)" : "none",
+            transition: "box-shadow 0.6s ease",
           }}
         >
-          <div className="w-full h-full bg-card border border-border/40 rounded-r-lg flex flex-col">
-            {/* Image */}
-            <div className="relative h-[45%] overflow-hidden rounded-tr-lg">
+          <div
+            className="w-full h-full bg-card overflow-hidden flex flex-col"
+            style={{ boxShadow: goldBorderShadow }}
+          >
+            {/* Idli product page */}
+            <div className="relative h-[40%] overflow-hidden">
               <img
-                src={productBatter}
-                alt="Premium IDLI Batter"
+                src={productIdli}
+                alt="Fresh IDLI"
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-              <span className="absolute top-4 right-4 bg-accent text-accent-foreground font-body text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
-                Fresh Daily
+              <span className="absolute top-3 right-3 bg-accent text-accent-foreground font-body text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+                Bestseller
               </span>
             </div>
-
-            {/* Content */}
-            <div className="flex-1 p-5 md:p-8 flex flex-col justify-between">
-              <div>
-                <h3 className="font-display text-xl md:text-3xl font-bold text-foreground mb-2 md:mb-3">
-                  Premium IDLI Batter
-                </h3>
-                <div className="w-12 h-0.5 bg-accent mb-3 md:mb-4" />
-                <p className="font-body text-muted-foreground text-sm md:text-base leading-relaxed">
-                  Expertly fermented, ready-to-steam batter. Consistent quality, perfect texture — every time.
-                </p>
+            <div className="flex-1 p-4 md:p-6 flex flex-col">
+              <h3 className="font-display text-lg md:text-2xl font-bold text-foreground mb-1 md:mb-2">
+                Fresh IDLI
+              </h3>
+              <div className="w-10 h-0.5 bg-accent mb-2 md:mb-3" />
+              <p className="font-body text-muted-foreground text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
+                Perfectly steamed, cloud-soft idlis made fresh daily with premium ingredients and RO purified water.
+              </p>
+              <div className="space-y-1.5 md:space-y-2 mt-auto">
+                {["Steamed to cloud-soft perfection", "Premium rice & urad dal", "Served fresh daily"].map((t) => (
+                  <div key={t} className="flex items-center gap-2 text-[10px] md:text-xs text-muted-foreground font-body">
+                    <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                    {t}
+                  </div>
+                ))}
               </div>
-
-              <div className="mt-4 md:mt-6 space-y-2 md:space-y-3">
-                <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground font-body">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  Perfect fermentation every batch
-                </div>
-                <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground font-body">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  RO purified water used
-                </div>
-                <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground font-body">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  Zero hand-contact process
-                </div>
-              </div>
-
-              {/* Close button */}
-              <button
-                onClick={() => setIsOpen(false)}
-                className="mt-4 md:mt-6 font-display text-xs md:text-sm font-semibold text-accent hover:text-accent/80 uppercase tracking-widest transition-colors cursor-pointer"
-              >
-                ← Close Menu
-              </button>
             </div>
+
+            {/* Gradient overlay for depth when closed */}
+            <div
+              className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+              style={{
+                background: "linear-gradient(to right, rgba(0,0,0,0) 60%, rgba(0,0,0,0.06) 100%)",
+                opacity: isOpen ? 1 : 0,
+              }}
+            />
           </div>
         </div>
 
-        {/* Middle page (spine area, visible when open) — Left side: Idli */}
+        {/* ====== RIGHT PANEL (flips right, origin-right) ====== */}
         <motion.div
-          className="absolute inset-0 origin-left"
+          className="absolute inset-0"
           style={{
             transformStyle: "preserve-3d",
-            zIndex: isOpen ? 10 : 5,
+            transformOrigin: "100% 50%",
+            zIndex: 2,
           }}
-          animate={{
-            rotateY: isOpen ? -160 : 0,
-          }}
+          initial={{ rotateY: 0 }}
+          animate={{ rotateY: isOpen ? 180 : 0 }}
           transition={{
-            duration: 0.8,
+            duration: 0.7,
             ease: [0.645, 0.045, 0.355, 1],
+            delay: isOpen ? 0.15 : 0,
           }}
         >
-          {/* Front of inner page (Idli product) */}
+          {/* Front of right panel (blank/decorative — hidden behind cover when closed) */}
           <div
-            className="absolute inset-0 rounded-r-lg overflow-hidden"
-            style={{ backfaceVisibility: "hidden" }}
+            style={{
+              ...pageStyle,
+              background: "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 100%)",
+              boxShadow: goldBorderShadow,
+            }}
           >
-            <div className="w-full h-full bg-card border border-border/40 rounded-r-lg flex flex-col">
-              <div className="relative h-[45%] overflow-hidden rounded-tr-lg">
-                <img
-                  src={productIdli}
-                  alt="Fresh IDLI"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                <span className="absolute top-4 right-4 bg-accent text-accent-foreground font-body text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
-                  Bestseller
-                </span>
-              </div>
-
-              <div className="flex-1 p-5 md:p-8 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-display text-xl md:text-3xl font-bold text-foreground mb-2 md:mb-3">
-                    Fresh IDLI
-                  </h3>
-                  <div className="w-12 h-0.5 bg-accent mb-3 md:mb-4" />
-                  <p className="font-body text-muted-foreground text-sm md:text-base leading-relaxed">
-                    Perfectly steamed, cloud-soft idlis made fresh daily with premium ingredients and RO purified water.
-                  </p>
-                </div>
-
-                <div className="mt-4 md:mt-6 space-y-2 md:space-y-3">
-                  <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground font-body">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                    Steamed to cloud-soft perfection
-                  </div>
-                  <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground font-body">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                    Premium rice & urad dal
-                  </div>
-                  <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground font-body">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                    Served fresh daily
-                  </div>
-                </div>
-              </div>
+            <div className="w-full h-full flex items-center justify-center opacity-[0.08]">
+              <img src={logo} alt="" className="w-24 md:w-36" />
             </div>
           </div>
 
-          {/* Back of inner page (decorative) */}
+          {/* Back of right panel (Batter product — visible when flipped open) */}
           <div
-            className="absolute inset-0 rounded-l-lg"
+            className="overflow-hidden"
             style={{
-              backfaceVisibility: "hidden",
+              ...pageStyle,
               transform: "rotateY(180deg)",
-              background: "linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(var(--muted)) 100%)",
+              boxShadow: goldBorderShadow,
             }}
           >
-            <div className="w-full h-full flex items-center justify-center opacity-10">
-              <img src={logo} alt="" className="w-32 md:w-48" />
+            <div className="w-full h-full bg-card flex flex-col">
+              <div className="relative h-[40%] overflow-hidden">
+                <img
+                  src={productBatter}
+                  alt="Premium IDLI Batter"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                <span className="absolute top-3 right-3 bg-accent text-accent-foreground font-body text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
+                  Fresh Daily
+                </span>
+              </div>
+              <div className="flex-1 p-4 md:p-6 flex flex-col">
+                <h3 className="font-display text-lg md:text-2xl font-bold text-foreground mb-1 md:mb-2">
+                  Premium IDLI Batter
+                </h3>
+                <div className="w-10 h-0.5 bg-accent mb-2 md:mb-3" />
+                <p className="font-body text-muted-foreground text-xs md:text-sm leading-relaxed mb-3 md:mb-4">
+                  Expertly fermented, ready-to-steam batter. Consistent quality, perfect texture — every time.
+                </p>
+                <div className="space-y-1.5 md:space-y-2 mt-auto">
+                  {["Perfect fermentation every batch", "RO purified water used", "Zero hand-contact process"].map((t) => (
+                    <div key={t} className="flex items-center gap-2 text-[10px] md:text-xs text-muted-foreground font-body">
+                      <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
+                      {t}
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="mt-3 md:mt-5 font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/80 uppercase tracking-widest transition-colors cursor-pointer self-start"
+                >
+                  ← Close Menu
+                </button>
+              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Cover */}
+        {/* ====== COVER (flips left, origin-left, highest z-index) ====== */}
         <motion.div
-          className="absolute inset-0 origin-left cursor-pointer"
+          className="absolute inset-0 cursor-pointer"
           style={{
             transformStyle: "preserve-3d",
-            zIndex: isOpen ? 20 : 15,
+            transformOrigin: "0% 50%",
+            zIndex: 10,
           }}
-          animate={{
-            rotateY: isOpen ? -180 : 0,
-          }}
+          initial={{ rotateY: 0 }}
+          animate={{ rotateY: isOpen ? -180 : 0 }}
           transition={{
-            duration: 0.9,
+            duration: 0.8,
             ease: [0.645, 0.045, 0.355, 1],
+            delay: isOpen ? 0 : 0.1,
           }}
           onClick={() => !isOpen && setIsOpen(true)}
         >
           {/* Front cover */}
           <div
-            className="absolute inset-0 rounded-lg overflow-hidden"
+            className="rounded-sm overflow-hidden"
             style={{
-              backfaceVisibility: "hidden",
+              ...pageStyle,
               boxShadow: "4px 8px 40px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.1)",
             }}
           >
             <div
-              className="w-full h-full flex flex-col items-center justify-center p-8 md:p-12 rounded-lg"
+              className="w-full h-full flex flex-col items-center justify-center p-6 md:p-10"
               style={{
                 background: `linear-gradient(160deg, hsl(var(--primary)) 0%, hsl(165, 85%, 12%) 50%, hsl(165, 60%, 20%) 100%)`,
               }}
             >
-              {/* Decorative border */}
-              <div className="absolute inset-3 md:inset-5 border border-accent/30 rounded-md" />
-              <div className="absolute inset-4 md:inset-6 border border-accent/15 rounded-sm" />
+              {/* Decorative borders */}
+              <div className="absolute inset-3 md:inset-4 border border-accent/30" />
+              <div className="absolute inset-[14px] md:inset-5 border border-accent/15" />
 
               {/* Corner ornaments */}
-              <div className="absolute top-5 left-5 md:top-7 md:left-7 w-4 h-4 md:w-6 md:h-6 border-t-2 border-l-2 border-accent/50" />
-              <div className="absolute top-5 right-5 md:top-7 md:right-7 w-4 h-4 md:w-6 md:h-6 border-t-2 border-r-2 border-accent/50" />
-              <div className="absolute bottom-5 left-5 md:bottom-7 md:left-7 w-4 h-4 md:w-6 md:h-6 border-b-2 border-l-2 border-accent/50" />
-              <div className="absolute bottom-5 right-5 md:bottom-7 md:right-7 w-4 h-4 md:w-6 md:h-6 border-b-2 border-r-2 border-accent/50" />
+              <div className="absolute top-4 left-4 md:top-6 md:left-6 w-3 h-3 md:w-5 md:h-5 border-t-2 border-l-2 border-accent/50" />
+              <div className="absolute top-4 right-4 md:top-6 md:right-6 w-3 h-3 md:w-5 md:h-5 border-t-2 border-r-2 border-accent/50" />
+              <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 w-3 h-3 md:w-5 md:h-5 border-b-2 border-l-2 border-accent/50" />
+              <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-3 h-3 md:w-5 md:h-5 border-b-2 border-r-2 border-accent/50" />
 
-              <img src={logo} alt="IDLI House" className="w-20 h-20 md:w-32 md:h-32 mb-4 md:mb-6 drop-shadow-lg" />
-
-              <div className="w-16 md:w-24 h-px bg-accent/50 mb-3 md:mb-4" />
-
-              <h2 className="font-display text-2xl md:text-4xl font-black text-primary-foreground text-center leading-tight mb-2 md:mb-3">
+              <img src={logo} alt="IDLI House" className="w-16 h-16 md:w-28 md:h-28 mb-3 md:mb-5 drop-shadow-lg" />
+              <div className="w-12 md:w-20 h-px bg-accent/50 mb-2 md:mb-3" />
+              <h2 className="font-display text-xl md:text-3xl font-black text-primary-foreground text-center leading-tight mb-1 md:mb-2">
                 IDLI House
               </h2>
-
-              <p className="font-body text-primary-foreground/60 text-xs md:text-sm uppercase tracking-[0.25em] mb-6 md:mb-10">
+              <p className="font-body text-primary-foreground/60 text-[10px] md:text-xs uppercase tracking-[0.25em] mb-4 md:mb-8">
                 Menu
               </p>
-
-              <div className="w-16 md:w-24 h-px bg-accent/50 mb-4 md:mb-6" />
+              <div className="w-12 md:w-20 h-px bg-accent/50 mb-3 md:mb-5" />
 
               <motion.p
-                className="font-display text-accent text-xs md:text-sm uppercase tracking-widest"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="font-display text-accent text-[10px] md:text-xs uppercase tracking-widest"
+                animate={{ opacity: [0.4, 1, 0.4] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                Open to View →
+                Tap to Open →
               </motion.p>
 
-              {/* Spine shadow */}
+              {/* Spine shadow on left edge */}
               <div
-                className="absolute left-0 top-0 bottom-0 w-4 md:w-6"
+                className="absolute left-0 top-0 bottom-0 w-3 md:w-5"
                 style={{
-                  background: "linear-gradient(to right, rgba(0,0,0,0.3), transparent)",
+                  background: "linear-gradient(to right, rgba(0,0,0,0.25), transparent)",
                 }}
               />
             </div>
           </div>
 
-          {/* Back of cover */}
+          {/* Back of cover (visible when flipped open — just dark) */}
           <div
-            className="absolute inset-0 rounded-lg"
             style={{
-              backfaceVisibility: "hidden",
+              ...pageStyle,
               transform: "rotateY(180deg)",
               background: `linear-gradient(160deg, hsl(var(--primary)) 0%, hsl(165, 85%, 14%) 100%)`,
-              boxShadow: "inset 2px 0 8px rgba(0,0,0,0.2)",
+              boxShadow: "inset 3px 0 10px rgba(0,0,0,0.25)",
             }}
           />
         </motion.div>
