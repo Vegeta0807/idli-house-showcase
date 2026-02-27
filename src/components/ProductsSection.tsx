@@ -5,10 +5,9 @@ import MenuBook3D from "./MenuBook3D";
 const ProductsSection = () => (
   <section id="products" className="py-28 md:py-40 bg-secondary relative overflow-hidden">
     <div className="container mx-auto px-6 md:px-12 relative">
-      <div className="text-center mb-16 md:mb-20">
-        <SmoothReveal>
-          <p className="text-accent font-body font-bold text-xs uppercase tracking-[0.3em] mb-4">What We Offer</p>
-        </SmoothReveal>
+      <div className="text-center mb-8 md:mb-12">        <SmoothReveal>
+        <p className="text-accent font-body font-bold text-xs uppercase tracking-[0.3em] mb-4">What We Offer</p>
+      </SmoothReveal>
 
         <TextReveal
           as="h2"
