@@ -105,7 +105,7 @@ const MenuBook3D = () => {
           {/* ==== FLIPPABLE PAGES (rendered bottom-to-top so page 0 is on top) ==== */}
           {[...pages].reverse().map((page, reverseIdx) => {
             const pageIdx = totalPages - 1 - reverseIdx;
-            const isFlipped = currentPage >= pageIdx;
+            const isFlipped = currentPage > pageIdx;
 
             return (
               <motion.div
@@ -163,7 +163,9 @@ const MenuBook3D = () => {
               duration: 0.8,
               ease: [0.645, 0.045, 0.355, 1],
             }}
-            onClick={() => !isOpen && nextPage()}
+            onClick={() => {
+              if (!isOpen) setCurrentPage(0);
+            }}
           >
             {/* Front cover */}
             <div
