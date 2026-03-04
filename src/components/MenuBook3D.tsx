@@ -106,13 +106,19 @@ const MenuBook3D = () => {
                 willChange: "transform",
               }}
             >
-              <div className="w-full h-full bg-card flex items-center justify-center" style={{ boxShadow: goldBorder }}>
+              <div className="w-full h-full bg-card flex flex-col items-center justify-center relative" style={{ boxShadow: goldBorder }}>
                 <div className="text-center p-6">
                   <img src={logo} alt="" className="w-16 md:w-24 mx-auto mb-3 opacity-20" />
                   <p className="font-display text-sm md:text-base text-muted-foreground/50 uppercase tracking-widest">
                     End of Menu
                   </p>
                 </div>
+                <button
+                  onClick={prevPage}
+                  className="absolute bottom-4 left-1/2 -translate-x-1/2 font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-4 py-2"
+                >
+                  ← Back
+                </button>
               </div>
             </div>
           )}
@@ -145,6 +151,24 @@ const MenuBook3D = () => {
                 {/* Front face */}
                 <div style={{ ...faceStyle, boxShadow: goldBorder }} className="bg-card overflow-hidden">
                   {page.front}
+                  {/* In-page navigation */}
+                  <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-gradient-to-t from-card via-card/95 to-transparent">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); prevPage(); }}
+                      className="font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-2 py-1"
+                    >
+                      {pageIdx === 0 ? "✕ Close" : "← Prev"}
+                    </button>
+                    <span className="font-body text-[10px] md:text-xs text-muted-foreground/60">
+                      {pageIdx + 1} / {totalPages}
+                    </span>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); nextPage(); }}
+                      className="font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-2 py-1"
+                    >
+                      Next →
+                    </button>
+                  </div>
                   {/* Right-edge shadow for depth */}
                   <div
                     className="absolute right-0 top-0 bottom-0 w-4 pointer-events-none"
@@ -249,33 +273,6 @@ const MenuBook3D = () => {
         </div>
       </div>
 
-      {/* Navigation controls */}
-      {isOpen && (
-        <motion.div
-          className="flex items-center gap-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <button
-            onClick={prevPage}
-            className="font-body text-xs md:text-sm font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-4 py-2"
-          >
-            {currentPage === 0 ? "← Close" : "← Prev"}
-          </button>
-          <span className="font-body text-xs text-muted-foreground">
-            {Math.min(currentPage + 1, pages.length + 1)} / {pages.length + 1}
-          </span>
-          {!isLastPage && (
-            <button
-              onClick={nextPage}
-              className="font-body text-xs md:text-sm font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-4 py-2"
-            >
-              Next →
-            </button>
-          )}
-        </motion.div>
-      )}
     </div>
   );
 };
