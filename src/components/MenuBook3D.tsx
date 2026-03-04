@@ -77,6 +77,8 @@ const MenuBook3D = () => {
     width: "100%",
     height: "100%",
     backfaceVisibility: "hidden",
+    display: "flex",
+    flexDirection: "column",
   };
 
   return (
@@ -149,10 +151,12 @@ const MenuBook3D = () => {
                 }}
               >
                 {/* Front face */}
-                <div style={{ ...faceStyle, boxShadow: goldBorder }} className="bg-card overflow-hidden">
-                  {page.front}
+                <div style={{ ...faceStyle, boxShadow: goldBorder }} className="bg-card overflow-hidden flex flex-col">
+                  <div className="flex-1 overflow-hidden relative">
+                    {page.front}
+                  </div>
                   {/* In-page navigation */}
-                  <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-4 md:px-6 py-2 md:py-3 bg-gradient-to-t from-card via-card/95 to-transparent">
+                  <div className="relative z-10 flex items-center justify-between px-4 md:px-6 py-2.5 md:py-3 border-t border-accent/15 bg-card">
                     <button
                       onClick={(e) => { e.stopPropagation(); prevPage(); }}
                       className="font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-2 py-1"
@@ -293,22 +297,22 @@ function PageContent({
 }) {
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="relative h-[50%] overflow-hidden">
+      <div className="relative h-[42%] flex-shrink-0 overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
         <span className="absolute top-3 right-3 bg-accent text-accent-foreground font-body text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-lg">
           {tag}
         </span>
       </div>
-      <div className="flex-1 p-4 md:p-6 flex flex-col">
-        <h3 className="font-display text-lg md:text-2xl font-bold text-foreground mb-1 md:mb-2">
+      <div className="flex-1 px-4 md:px-6 py-3 md:py-4 flex flex-col overflow-hidden">
+        <h3 className="font-display text-lg md:text-2xl font-bold text-foreground mb-1">
           {title}
         </h3>
-        <div className="w-10 h-0.5 bg-accent mb-2 md:mb-3" />
-        <p className="font-body text-muted-foreground text-xs md:text-sm leading-relaxed mb-3">
+        <div className="w-10 h-0.5 bg-accent mb-2" />
+        <p className="font-body text-muted-foreground text-[11px] md:text-sm leading-relaxed mb-2">
           {desc}
         </p>
-        <div className="space-y-1.5 mt-auto">
+        <div className="space-y-1 mt-auto">
           {bullets.map((t) => (
             <div key={t} className="flex items-center gap-2 text-[10px] md:text-xs text-muted-foreground font-body">
               <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
