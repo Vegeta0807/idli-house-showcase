@@ -259,7 +259,7 @@ const MenuBook3D = () => {
                 </p>
                 <div className="w-12 md:w-20 h-px bg-accent/50 mb-3 md:mb-5" />
                 <motion.p
-                  className="font-display text-accent text-2xl md:text-xs uppercase tracking-widest"
+                  className="font-display text-accent text-2xl md:text-2xl uppercase tracking-widest"
                   animate={{ opacity: [0.4, 1, 0.4] }}
                   transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                 >
