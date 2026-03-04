@@ -249,9 +249,9 @@ const MenuBook3D = () => {
                 <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 w-3 h-3 md:w-5 md:h-5 border-b-2 border-l-2 border-accent/50" />
                 <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-3 h-3 md:w-5 md:h-5 border-b-2 border-r-2 border-accent/50" />
 
-                <img src={logo} alt="IDLI House" className="w-16 h-16 md:w-28 md:h-28 mb-3 md:mb-5 drop-shadow-lg" />
+                <img src={logo} alt="IDLI House" className="w-16 h-16 md:w-32 md:h-32 sm:w-20 sm:h-20 mb-3 md:mb-5 drop-shadow-lg" />
                 <div className="w-12 md:w-20 h-px bg-accent/50 mb-2 md:mb-3" />
-                <h2 className="font-display text-xl md:text-3xl font-black text-primary-foreground text-center leading-tight mb-1 md:mb-2">
+                <h2 className="font-display text-3xl md:text-4xl font-black text-primary-foreground text-center leading-tight mb-1 md:mb-2">
                   IDLI House
                 </h2>
                 <p className="font-body text-primary-foreground/60 text-[10px] md:text-xs uppercase tracking-[0.25em] mb-4 md:mb-8">
@@ -314,7 +314,7 @@ function PageContent({
         </span>
       </div>
       <div className="flex-1 px-4 md:px-6 py-3 md:py-4 flex flex-col overflow-hidden">
-        <h3 className="font-display text-lg md:text-2xl font-bold text-foreground mb-1">
+        <h3 className="font-body text-lg md:text-2xl font-bold text-foreground mb-1">
           {title}
         </h3>
         <div className="w-10 h-0.5 bg-accent mb-2" />
