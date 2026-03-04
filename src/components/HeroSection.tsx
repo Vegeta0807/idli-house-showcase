@@ -47,7 +47,7 @@ const HeroSection = () => {
           </SmoothReveal>
 
           <SmoothReveal delay={0.4}>
-            <h1 className="font-display sm:text-xl md:text-7xl lg:text-8xl font-black text-primary-foreground leading-[0.95] mb-6 text-xl">
+            <h1 className="font-display sm:text-4xl md:text-7xl lg:text-8xl font-black text-primary-foreground leading-[0.95] mb-6 text-4xl">
               Softness You
               <br />
               Can <span className="text-accent italic">Taste.</span>
