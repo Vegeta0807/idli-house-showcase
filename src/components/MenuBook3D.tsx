@@ -156,24 +156,6 @@ const MenuBook3D = () => {
                   <div className="flex-1 overflow-hidden relative">
                     {page.front}
                   </div>
-                  {/* In-page navigation */}
-                  <div className="relative z-10 flex items-center justify-between px-4 md:px-6 py-2.5 md:py-3 border-t border-accent/15 bg-card">
-                    <button
-                      onClick={(e) => { e.stopPropagation(); prevPage(); }}
-                      className="font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-2 py-1"
-                    >
-                      {pageIdx === 0 ? "✕ Close" : "← Prev"}
-                    </button>
-                    <span className="font-body text-[10px] md:text-xs text-muted-foreground/60">
-                      {pageIdx + 1} / {totalPages}
-                    </span>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); nextPage(); }}
-                      className="font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-2 py-1"
-                    >
-                      Next →
-                    </button>
-                  </div>
                   {/* Right-edge shadow for depth */}
                   <div
                     className="absolute right-0 top-0 bottom-0 w-4 pointer-events-none"
@@ -196,6 +178,31 @@ const MenuBook3D = () => {
               </motion.div>
             );
           })}
+
+          {/* Book-fixed navigation (inside book frame) */}
+          {isOpen && (
+            <div className="absolute bottom-2 md:bottom-3 left-3 right-3 md:left-4 md:right-4 z-[60] flex items-center justify-between px-3 md:px-4 py-2 md:py-2.5 border border-accent/20 bg-card/95 backdrop-blur-sm shadow-lg">
+              <button
+                onClick={(e) => { e.stopPropagation(); prevPage(); }}
+                className="font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-2 py-1"
+              >
+                {currentPage === 0 ? "✕ Close" : "← Prev"}
+              </button>
+              <span className="font-body text-[10px] md:text-xs text-muted-foreground/70">
+                {Math.min(currentPage + 1, totalPages + 1)} / {totalPages + 1}
+              </span>
+              {!isLastPage ? (
+                <button
+                  onClick={(e) => { e.stopPropagation(); nextPage(); }}
+                  className="font-display text-[10px] md:text-xs font-semibold text-accent hover:text-accent/70 uppercase tracking-widest transition-colors cursor-pointer px-2 py-1"
+                >
+                  Next →
+                </button>
+              ) : (
+                <span className="w-[54px] md:w-[68px]" aria-hidden />
+              )}
+            </div>
+          )}
 
           {/* ==== COVER (highest z-index) ==== */}
           <motion.div
