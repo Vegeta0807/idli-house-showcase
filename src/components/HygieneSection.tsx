@@ -47,7 +47,7 @@ const HygieneSection = () =>
                 <div className="w-14 h-14 rounded-2xl bg-accent/20 flex items-center justify-center mx-auto mb-5 group-hover:bg-accent transition-all duration-300">
                   <item.icon className="w-7 h-7 text-accent group-hover:text-accent-foreground transition-colors duration-300" />
                 </div>
-                <h3 className="font-display font-semibold text-primary-foreground mb-3 mx-0 text-3xl text-amber-400">{item.title}</h3>
+                <h3 className="font-display font-semibold text-primary-background mb-3">{item.title}</h3>
                 <p className="font-body text-sm text-primary-foreground/60 leading-relaxed">{item.desc}</p>
               </div>
             </TiltCard>

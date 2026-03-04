@@ -205,7 +205,7 @@ const MenuBook3D = () => {
           )}
 
           {/* ==== COVER (highest z-index) ==== */}
-          <motion.div
+            <motion.div
             className="absolute inset-0 cursor-pointer"
             style={{
               transformStyle: "preserve-3d",
@@ -320,8 +320,8 @@ function PageContent({
         <div className="w-10 h-0.5 bg-accent mb-2" />
         <p className="font-body text-muted-foreground text-[11px] md:text-sm leading-relaxed mb-2">
           {desc}
-        </p>
-        <div className="space-y-1 mt-auto">
+        </p> 
+        <div className="space-y-1.5 mt-4">
           {bullets.map((t) => (
             <div key={t} className="flex items-center gap-2 text-[10px] md:text-xs text-muted-foreground font-body">
               <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />
