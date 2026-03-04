@@ -136,9 +136,10 @@ const MenuBook3D = () => {
                 style={{
                   transformStyle: "preserve-3d",
                   transformOrigin: "0% 50%",
-                  zIndex: totalPages - pageIdx + 1,
+                  zIndex: isFlipped ? 0 : totalPages - pageIdx + 1,
                   backfaceVisibility: "hidden",
                   willChange: "transform",
+                  pointerEvents: isFlipped ? "none" : "auto",
                 }}
                 initial={false}
                 animate={{
@@ -205,6 +206,7 @@ const MenuBook3D = () => {
               zIndex: totalPages + 5,
               backfaceVisibility: "hidden",
               willChange: "transform",
+              pointerEvents: isOpen ? "none" : "auto",
             }}
             initial={false}
             animate={{
