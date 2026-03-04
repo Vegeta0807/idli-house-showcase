@@ -25,14 +25,14 @@ const HeroSection = () => {
         <img
           src={heroImg}
           alt="Premium Idli with chutney and sambar"
-          className="w-full h-full object-cover"
-        />
+          className="w-full h-full object-cover" />
+        
         <div className="absolute inset-0 bg-gradient-to-r from-[hsl(165,85%,10%)]/90 via-[hsl(165,85%,12%)]/70 to-transparent" />
       </motion.div>
 
       <motion.div
-        className="relative container mx-auto px-6 md:px-12 py-32 md:py-0"
-      >
+        className="relative container mx-auto px-6 md:px-12 py-32 md:py-0">
+        
         <div className="max-w-3xl">
           {/* Logo mark */}
           <SmoothReveal delay={0.2}>
@@ -42,12 +42,12 @@ const HeroSection = () => {
               className="h-28 md:h-40 w-auto mb-8"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", damping: 15, stiffness: 80 }}
-            />
+              transition={{ type: "spring", damping: 15, stiffness: 80 }} />
+            
           </SmoothReveal>
 
           <SmoothReveal delay={0.4}>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black text-primary-foreground leading-[0.95] mb-6">
+            <h1 className="font-display md:text-7xl lg:text-8xl font-black text-primary-foreground leading-[0.95] mb-6 text-9xl">
               Softness You
               <br />
               Can <span className="text-accent italic">Taste.</span>
@@ -64,10 +64,10 @@ const HeroSection = () => {
             <div className="flex flex-wrap gap-4">
               <MagneticButton
                 onClick={() =>
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground font-body font-bold px-10 py-5 rounded-full text-base uppercase tracking-wider shadow-[0_8px_30px_-4px] shadow-accent/40 hover:shadow-accent/60 transition-shadow duration-300"
-              >
+                className="inline-flex items-center gap-3 bg-accent text-accent-foreground font-body font-bold px-10 py-5 rounded-full text-base uppercase tracking-wider shadow-[0_8px_30px_-4px] shadow-accent/40 hover:shadow-accent/60 transition-shadow duration-300">
+                
                 Order Now
                 <motion.svg
                   className="w-5 h-5"
@@ -76,26 +76,26 @@ const HeroSection = () => {
                   stroke="currentColor"
                   strokeWidth={2.5}
                   animate={isMobile ? { x: 0 } : { x: [0, 4, 0] }}
-                  transition={isMobile ? { duration: 0 } : { duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                >
+                  transition={isMobile ? { duration: 0 } : { duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+                  
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </motion.svg>
               </MagneticButton>
 
               <MagneticButton
                 onClick={() =>
-                  document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+                document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="inline-flex items-center gap-3 border-2 border-primary-foreground/30 text-primary-foreground font-body font-bold px-10 py-5 rounded-full text-base uppercase tracking-wider hover:border-primary-foreground/60 transition-colors duration-300"
-              >
+                className="inline-flex items-center gap-3 border-2 border-primary-foreground/30 text-primary-foreground font-body font-bold px-10 py-5 rounded-full text-base uppercase tracking-wider hover:border-primary-foreground/60 transition-colors duration-300">
+                
                 Learn More
               </MagneticButton>
             </div>
           </SmoothReveal>
         </div>
       </motion.div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
