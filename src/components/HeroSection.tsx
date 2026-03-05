@@ -61,16 +61,16 @@ const HeroSection = () => {
           </SmoothReveal>
 
           <SmoothReveal delay={0.8}>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-row gap-3 md:gap-4">
               <MagneticButton
                 onClick={() =>
                 document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground font-body font-bold px-10 py-5 rounded-full text-base uppercase tracking-wider shadow-[0_8px_30px_-4px] shadow-accent/40 hover:shadow-accent/60 transition-shadow duration-300">
+                className="inline-flex items-center gap-2 md:gap-3 bg-accent text-accent-foreground font-body font-bold px-6 py-3 md:px-10 md:py-5 rounded-full text-sm md:text-base uppercase tracking-wider shadow-[0_8px_30px_-4px] shadow-accent/40 hover:shadow-accent/60 transition-shadow duration-300">
                 
                 Order Now
                 <motion.svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 md:w-5 md:h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -86,7 +86,7 @@ const HeroSection = () => {
                 onClick={() =>
                 document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="inline-flex items-center gap-3 border-2 border-primary-foreground/30 text-primary-foreground font-body font-bold px-10 py-5 rounded-full text-base uppercase tracking-wider hover:border-primary-foreground/60 transition-colors duration-300">
+                className="inline-flex items-center gap-2 md:gap-3 border-2 border-primary-foreground/30 text-primary-foreground font-body font-bold px-6 py-3 md:px-10 md:py-5 rounded-full text-sm md:text-base uppercase tracking-wider hover:border-primary-foreground/60 transition-colors duration-300">
                 
                 Learn More
               </MagneticButton>
