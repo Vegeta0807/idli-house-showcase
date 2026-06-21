@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" width="320" height="64">
+  <!-- Transparent bg -->
+
+  <!-- Mini house icon left side -->
+  <!-- Steam -->
+  <path d="M40 6 C39 4, 41 2.5, 40 1"
+        stroke="#E5B340" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.9"/>
+  <!-- Roof -->
+  <polygon points="8,28 32,10 56,28"
+           fill="none" stroke="#E5B340" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Walls -->
+  <line x1="8" y1="28" x2="8" y2="50" stroke="#E5B340" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="56" y1="28" x2="56" y2="50" stroke="#E5B340" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="8" y1="50" x2="56" y2="50" stroke="#E5B340" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Chimney -->
+  <rect x="36" y="16" width="7" height="8" fill="none" stroke="#E5B340" stroke-width="1.8"/>
+
+  <!-- "The" inside icon -->
+  <text x="13" y="32"
+        font-family="Georgia, serif"
+        font-size="7" font-style="italic"
+        fill="#E5B340">The</text>
+  <!-- "idli" inside icon -->
+  <text x="32" y="42"
+        font-family="Georgia, serif"
+        font-size="14" font-weight="700" font-style="italic"
+        fill="#E5B340" text-anchor="middle">idli</text>
+  <!-- "House" inside icon -->
+  <text x="32" y="50"
+        font-family="Georgia, serif"
+        font-size="9" font-weight="700"
+        fill="#E5B340" text-anchor="middle" letter-spacing="0.5">House</text>
+
+  <!-- Vertical divider -->
+  <line x1="72" y1="14" x2="72" y2="50" stroke="rgba(229,179,64,0.25)" stroke-width="1"/>
+
+  <!-- Text block right side -->
+  <!-- Main name -->
+  <text x="84" y="30"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="18" font-weight="700"
+        fill="#E5B340" letter-spacing="2">THE IDLI HOUSE</text>
+
+  <!-- Tagline -->
+  <text x="84" y="46"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="9" font-style="italic"
+        fill="#E5B340" letter-spacing="0.5" opacity="0.65">Bulk Idli &amp; Batter Supplier</text>
+</svg>

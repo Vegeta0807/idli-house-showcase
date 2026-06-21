@@ -1,23 +1,37 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import HygieneSection from "@/components/HygieneSection";
-import ProductsSection from "@/components/ProductsSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import "@/styles/tih.css";
+import { useReveal } from "@/components/tih/effects";
+import TihNav from "@/components/tih/TihNav";
+import TihHero from "@/components/tih/TihHero";
+import TihTicker from "@/components/tih/TihTicker";
+import TihStory from "@/components/tih/TihStory";
+import TihPromise from "@/components/tih/TihPromise";
+import TihProducts from "@/components/tih/TihProducts";
+import TihServe from "@/components/tih/TihServe";
+import TihContact from "@/components/tih/TihContact";
+import TihDistributor from "@/components/tih/TihDistributor";
+import TihFooter from "@/components/tih/TihFooter";
 
-const Index = () => (
-  <>
-    <Navbar />
-    <main>
-      <HeroSection />
-      <AboutSection />
-      <HygieneSection />
-      <ProductsSection />
-      <ContactSection />
-    </main>
-    <Footer />
-  </>
-);
+const Index = () => {
+  useReveal();
+
+  return (
+    <div className="tih">
+      <div className="tih-noise" aria-hidden />
+
+      <TihNav />
+      <main>
+        <TihHero />
+        <TihTicker />
+        <TihStory />
+        <TihPromise />
+        <TihProducts />
+        <TihServe />
+        <TihContact />
+        <TihDistributor />
+      </main>
+      <TihFooter />
+    </div>
+  );
+};
 
 export default Index;

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Steam -->
+  <path d="M72 14 C70 10, 74 7, 72 3 C70 0, 73 -1, 72 -1"
+        stroke="#E5B340" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- House -->
+  <polygon points="10,62 60,20 110,62"
+           fill="none" stroke="#E5B340" stroke-width="4" stroke-linejoin="round"/>
+  <line x1="10" y1="62" x2="10" y2="108" stroke="#E5B340" stroke-width="4" stroke-linecap="round"/>
+  <line x1="110" y1="62" x2="110" y2="108" stroke="#E5B340" stroke-width="4" stroke-linecap="round"/>
+  <line x1="10" y1="108" x2="110" y2="108" stroke="#E5B340" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Chimney -->
+  <rect x="68" y="30" width="14" height="16"
+        fill="none" stroke="#E5B340" stroke-width="2.5"/>
+
+  <!-- "The" -->
+  <text x="24" y="68"
+        font-family="Georgia, serif"
+        font-size="13" font-style="italic" font-weight="400"
+        fill="#E5B340">The</text>
+
+  <!-- "idli" -->
+  <text x="60" y="90"
+        font-family="Georgia, serif"
+        font-size="30" font-weight="700" font-style="italic"
+        fill="#E5B340" text-anchor="middle">idli</text>
+
+  <!-- "House" -->
+  <text x="60" y="108"
+        font-family="Georgia, serif"
+        font-size="17" font-weight="700"
+        fill="#E5B340" text-anchor="middle" letter-spacing="1">House</text>
+</svg>

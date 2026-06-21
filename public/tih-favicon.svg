@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Forest green square background -->
+  <rect width="100" height="100" rx="16" fill="#1C4A35"/>
+
+  <!-- Mini house centered -->
+  <!-- Steam -->
+  <path d="M56 16 C55 13, 57 11, 56 8"
+        stroke="#E5B340" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- House outline -->
+  <polygon points="18,48 50,24 82,48"
+           fill="none" stroke="#E5B340" stroke-width="2.8" stroke-linejoin="round"/>
+  <line x1="18" y1="48" x2="18" y2="72" stroke="#E5B340" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="82" y1="48" x2="82" y2="72" stroke="#E5B340" stroke-width="2.8" stroke-linecap="round"/>
+  <line x1="18" y1="72" x2="82" y2="72" stroke="#E5B340" stroke-width="2.8" stroke-linecap="round"/>
+
+  <!-- Chimney -->
+  <rect x="55" y="30" width="10" height="10" fill="none" stroke="#E5B340" stroke-width="2"/>
+
+  <!-- The -->
+  <text x="26" y="53" font-family="Georgia, serif" font-size="10" font-style="italic" fill="#E5B340">The</text>
+  <!-- idli -->
+  <text x="50" y="66" font-family="Georgia, serif" font-size="22" font-weight="700" font-style="italic" fill="#E5B340" text-anchor="middle">idli</text>
+  <!-- House -->
+  <text x="50" y="72" font-family="Georgia, serif" font-size="12" font-weight="700" fill="#E5B340" text-anchor="middle" letter-spacing="0.8">House</text>
+
+  <!-- Bottom tag -->
+  <text x="50" y="88" font-family="Georgia, serif" font-size="6.5" font-style="italic" fill="rgba(229,179,64,0.55)" text-anchor="middle" letter-spacing="0.2">Bulk Idli &amp; Batter</text>
+</svg>

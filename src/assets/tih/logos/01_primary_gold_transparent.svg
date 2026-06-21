@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 180" width="160" height="180">
+  <!-- Steam wisp -->
+  <path d="M96 18 C94 14, 98 10, 96 6 C94 2, 97 0, 96 0" 
+        stroke="#E5B340" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- House outline shape -->
+  <!-- Roof peak -->
+  <polygon points="20,80 80,32 140,80" 
+           fill="none" stroke="#E5B340" stroke-width="3.5" stroke-linejoin="round"/>
+  <!-- Left wall -->
+  <line x1="20" y1="80" x2="20" y2="136" stroke="#E5B340" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Right wall -->
+  <line x1="140" y1="80" x2="140" y2="136" stroke="#E5B340" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Bottom -->
+  <line x1="20" y1="136" x2="140" y2="136" stroke="#E5B340" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Chimney left -->
+  <rect x="88" y="44" width="14" height="16" rx="0" 
+        fill="none" stroke="#E5B340" stroke-width="2.5"/>
+
+  <!-- "The" small text - top left inside house, with serif feel -->
+  <text x="34" y="86"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="14"
+        font-style="italic"
+        font-weight="400"
+        fill="#E5B340"
+        letter-spacing="0.5">The</text>
+
+  <!-- "idli" bold center -->
+  <text x="80" y="112"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="34"
+        font-weight="700"
+        font-style="italic"
+        fill="#E5B340"
+        text-anchor="middle"
+        letter-spacing="-0.5">idli</text>
+
+  <!-- "House" bold bottom -->
+  <text x="80" y="135"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="20"
+        font-weight="700"
+        fill="#E5B340"
+        text-anchor="middle"
+        letter-spacing="1">House</text>
+
+  <!-- Tagline -->
+  <text x="80" y="162"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="9"
+        font-style="italic"
+        fill="#E5B340"
+        text-anchor="middle"
+        opacity="0.7"
+        letter-spacing="0.3">Bulk Idli &amp; Batter Supplier</text>
+</svg>
